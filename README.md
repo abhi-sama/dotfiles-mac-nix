@@ -134,6 +134,20 @@ My rough rule of thumb:
 
 A good setup does not force every tool through one package manager. It just makes the ownership of each layer clear.
 
+## Agent skills (AXI)
+
+These [AXI](https://axi.md/) agent skills are installed imperatively with the `skills` CLI, so they live in `~/.agents/skills/` (symlinked into Claude Code) and are **not** managed by Nix.
+They do not restore automatically on a fresh machine, so reinstall them after bootstrap:
+
+```bash
+npx --yes skills add kunchenguid/gh-axi --skill gh-axi -g
+npx --yes skills add kunchenguid/chrome-devtools-axi --skill chrome-devtools-axi -g
+npx --yes skills add kunchenguid/lavish-axi --skill lavish -g
+```
+
+Prerequisites (all handled by the Nix config except Chrome): `gh-axi` needs the `gh` CLI authenticated via `gh auth login`, and `chrome-devtools-axi` needs Google Chrome installed.
+The `-g` flag installs globally; each package also ships an optional secondary skill that only installs per-project (drop `-g` inside a project to get it).
+
 ## Why this setup looks like this
 
 I wanted a setup that was:
