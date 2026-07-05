@@ -148,6 +148,27 @@ npx --yes skills add kunchenguid/lavish-axi --skill lavish -g
 Prerequisites (all handled by the Nix config except Chrome): `gh-axi` needs the `gh` CLI authenticated via `gh auth login`, and `chrome-devtools-axi` needs Google Chrome installed.
 The `-g` flag installs globally; each package also ships an optional secondary skill that only installs per-project (drop `-g` inside a project to get it).
 
+## no-mistakes gate
+
+[no-mistakes](https://github.com/kunchenguid/no-mistakes) is a local git proxy that validates code (review, test, docs, lint) in an isolated worktree before it reaches the remote, then opens a PR.
+It is a standalone binary plus a user-level `/no-mistakes` agent skill, installed outside Nix, so it does not restore on a fresh machine.
+
+Reinstall the binary after bootstrap:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh
+```
+
+It installs to `~/.no-mistakes/bin` and symlinks into `~/.local/bin` (already on PATH via `home.sessionPath`), so no `sudo` is needed.
+Then, from inside a repo that has an `origin` remote, register the gate and the user-level `/no-mistakes` skill:
+
+```bash
+no-mistakes init
+```
+
+Push through the gate with `git push no-mistakes <branch>`; remove it from a repo with `no-mistakes eject`.
+Prerequisites `git` and the `gh` CLI are both in the Nix config; gate artifacts live under `~/.no-mistakes/` and the repo already git-ignores `.no-mistakes/`.
+
 ## Why this setup looks like this
 
 I wanted a setup that was:
