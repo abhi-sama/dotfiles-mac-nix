@@ -169,6 +169,7 @@ in
 
   home.file = {
     ".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/.config/wezterm";
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/.config/nvim";
 
     # Global agent instructions: ~/AGENTS.md is the source of truth, and
     # ~/.claude/CLAUDE.md points at it so Claude Code loads it as user memory.
