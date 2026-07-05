@@ -16,6 +16,7 @@
     casks = [
       "wezterm"
       "amethyst"
+      "opensuperwhisper"
     ];
   };
 
