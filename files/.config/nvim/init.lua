@@ -107,4 +107,8 @@ require("lazy").setup({
     event = "VeryLazy",
     config = true,
   },
+}, {
+  -- None of our plugins need luarocks; disabling it silences the
+  -- hererocks/luarocks checkhealth error and warnings.
+  rocks = { enabled = false },
 })
