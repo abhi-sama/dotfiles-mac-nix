@@ -174,5 +174,6 @@ in
     # ~/.claude/CLAUDE.md points at it so Claude Code loads it as user memory.
     "AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/AGENTS.md";
     ".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/AGENTS.md";
+    "OPINIONS.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/files/OPINIONS.md";
   };
 }
