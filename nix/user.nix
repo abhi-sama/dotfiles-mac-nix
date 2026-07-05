@@ -12,6 +12,7 @@ in
   home.packages = with pkgs; [
     git
     neovim
+    tree-sitter
     curl
     wget
     jq
