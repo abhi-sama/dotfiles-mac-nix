@@ -169,6 +169,22 @@ no-mistakes init
 Push through the gate with `git push no-mistakes <branch>`; remove it from a repo with `no-mistakes eject`.
 Prerequisites `git` and the `gh` CLI are both in the Nix config; gate artifacts live under `~/.no-mistakes/` and the repo already git-ignores `.no-mistakes/`.
 
+## gnhf (Good Night, Have Fun)
+
+[gnhf](https://github.com/kunchenguid/gnhf) is an autonomous agent orchestrator: it repeatedly calls a coding agent until a natural-language stop condition is met, committing one small, documented change per iteration.
+It is a global npm CLI plus a user-level `gnhf` agent skill, installed outside Nix, so it does not restore on a fresh machine.
+
+Reinstall after bootstrap:
+
+```bash
+npm install -g gnhf
+ln -sfn "$(npm root -g)/gnhf/skills/gnhf" ~/.claude/skills/gnhf
+```
+
+The first line installs the CLI; the second registers the `gnhf` skill for Claude Code at user level.
+Start a run with `gnhf "<objective>"`, and always bound it with `--max-iterations`, `--max-tokens`, or `--stop-when` since it drives the agent unattended.
+Run metadata lives in `.gnhf/runs/` (git-ignored) and config in `~/.gnhf/config.yml`.
+
 ## Why this setup looks like this
 
 I wanted a setup that was:
