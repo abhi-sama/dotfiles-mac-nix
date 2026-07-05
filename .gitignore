@@ -1,2 +1,5 @@
 # no-mistakes pipeline evidence should never be committed to this public repo
 .no-mistakes/
+
+# nix build output symlink
+result
