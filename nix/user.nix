@@ -127,6 +127,9 @@ in
       rebuild = "sudo /run/current-system/sw/bin/darwin-rebuild switch --flake ~/github/dotfiles-mac-nix#mac";
     };
     initContent = ''
+      # Put Homebrew (Apple Silicon) on PATH so `brew` works in the shell.
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+
       bindkey '^f' autosuggest-accept
 
       # ── Shift+Arrow text selection on the command line ─────────────
