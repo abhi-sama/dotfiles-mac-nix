@@ -11,9 +11,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treehouse = {
+      url = "github:kunchenguid/treehouse";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, nix-darwin, home-manager, ... }: {
     darwinConfigurations.mac = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
@@ -23,6 +27,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users.abhi-sama = import ./nix/user.nix;
         }
       ];

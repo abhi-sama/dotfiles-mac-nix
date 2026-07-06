@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   dotfilesDir = "${config.home.homeDirectory}/github/dotfiles-mac-nix";
@@ -12,6 +12,7 @@ in
   home.packages = with pkgs; [
     git
     gh
+    inputs.treehouse.packages.${pkgs.system}.default  # treehouse: reusable git worktree pool for agents
     neovim
     tree-sitter
     curl
