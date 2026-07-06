@@ -185,6 +185,21 @@ The first line installs the CLI; the second registers the `gnhf` skill for Claud
 Start a run with `gnhf "<objective>"`, and always bound it with `--max-iterations`, `--max-tokens`, or `--stop-when` since it drives the agent unattended.
 Run metadata lives in `.gnhf/runs/` (git-ignored) and config in `~/.gnhf/config.yml`.
 
+## firstmate (multi-agent orchestrator)
+
+[firstmate](https://github.com/kunchenguid/firstmate) is a multi-agent orchestrator: one "first mate" agent supervises a crew of autonomous agents, each in its own [treehouse](https://github.com/kunchenguid/treehouse) worktree, and hands back PRs, approved local merges, or investigation reports.
+It is a standalone repo you operate *from* (not an installed package), so it is not managed by Nix.
+
+Clone it once, then launch your agent harness inside it:
+
+```bash
+git clone https://github.com/kunchenguid/firstmate ~/github/firstmate
+cd ~/github/firstmate && cc
+```
+
+Then talk to it in natural language; it clones each target project under `projects/` and spawns crewmates in tmux.
+Prerequisites `gh` (authenticated), `git`, and `tmux` are all in the Nix config; it ships work through per-project modes including the `no-mistakes` gate set up above.
+
 ## Why this setup looks like this
 
 I wanted a setup that was:
